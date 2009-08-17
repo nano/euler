@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ $# -eq 0 ]; then
+  problems=$(ls p???.py | sed -e "s/^p\([0-9]\{3\}\).py$/\\1/")
+else
+  problems=$@
+fi
+
+for p in $problems; do
+  p=$(printf "%.3d" $(echo $p | sed -e "s/^0*//"))
+  echo "$p : $(python p$p.py)"
+done
