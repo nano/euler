@@ -12,6 +12,11 @@ def fibonacci(limit=None):
 def ispalindrom(i):
     return i == int(str(i)[::-1])
 
+def ispandigital(i):
+    s = str(i)
+    l = len(s)
+    return set(map(int, s)) == set(range(1, l + 1))
+
 def gcd(i, j):
     if j:
         return gcd(j, i % j)
@@ -34,10 +39,21 @@ def triangle(limit=None):
         yield sum([j for j in xrange(1, i + 1)])
         i += 1
 
-def sieve(limit):
-    s = range(limit + 1)
-    s[1] = 0
-    for i in xrange(2, int(pow(limit, 0.5)) + 1):
-        if s[i] != 0:
-            s[2*i::i] = [0] * (limit / i - 1)
-    return filter(None, s)
+def primes(numbers=None, limit=None):
+    i = 0
+    D = {}  # map composite integers to primes witnessing their compositeness
+    q = 2   # first integer to test for primality
+    while 1:
+        if q not in D:
+            if limit and q > limit:
+                return
+            yield q        # not marked composite, must be prime
+            i += 1
+            if numbers and i == numbers:
+                return
+            D[q * q] = [q]   # first multiple of q not already marked
+        else:
+            for p in D[q]: # move each witness to its next multiple
+                D.setdefault(p + q, []).append(p)
+            del D[q]       # no longer need D[q], free memory
+        q += 1
