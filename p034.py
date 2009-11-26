@@ -1,8 +1,11 @@
 from euler import factorial
 
 def p034(limit):
+    fact = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]
+
     def iscurious(n):
-        return n == sum(map(factorial, map(int, (c for c in str(n)))))
+        return n == sum(fact[int(d)] for d in str(n))
+
     return sum(filter(iscurious, xrange(10, limit)))
 
 if __name__ == "__main__":
