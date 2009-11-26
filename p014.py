@@ -1,5 +1,5 @@
 def p014(limit):
-    cache, maxcl, maxn = {}, 0, 0
+    cache = {}
 
     def collatz(i):
         cl = 0
