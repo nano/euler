@@ -7,4 +7,4 @@ def p034(limit):
 
 if __name__ == "__main__":
     from benchmark import benchmark
-    benchmark(p034, 999999)
+    benchmark(p034, 50000) # TODO Check upper bound
