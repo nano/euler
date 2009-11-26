@@ -16,11 +16,8 @@ def p014(limit):
 
     for i in xrange(limit):
         cache[i] = collatz(i)
-        if cache[i] > maxcl:
-            maxcl = cache[i]
-            maxn = i
 
-    return maxn
+    return cache.keys()[cache.values().index(max(cache.values()))]
 
 if __name__ == "__main__":
     from benchmark import benchmark
