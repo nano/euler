@@ -1,0 +1,1 @@
+Plus @@ IntegerDigits[2^1000]
